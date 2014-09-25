@@ -5,7 +5,8 @@ class androidWrapper:
 		self.uuid="00001101-0000-1000-8000-00805F9B34FB"
 		self.server_sock= BluetoothSocket(RFCOMM)
 		self.server_sock.bind(("",PORT_ANY))
-		self.client_sock, self.client_info = None
+		self.client_sock = None
+		self.client_info = None
 
 	def startBTService(self):
 		self.server_sock.listen(1)
