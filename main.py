@@ -19,7 +19,6 @@ class Main:
 		self.btq = deque ([])
 
 	def ipWrite (threadName, delay, pc, btq):
-		print delay
 		stop_flag = 0
 		while stop_flag == 0:
 			time.sleep (delay)
