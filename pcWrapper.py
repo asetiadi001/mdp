@@ -5,17 +5,18 @@ class pcWrapper:
 	def __init__(self):
 		self.tcp_ip = "192.168.18.1"
 		self.port = 5143
-	
-	def connect(self):
 		self.ipSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-		
+
+	def startIPService(self):
+
 		self.ipSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
 		self.ipSocket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST,1)
 		self.ipSocket.bind((self.tcp_ip, self.port))
 		print "waiting..."
 		self.pcaddr = self.ipSocket.recvfrom(1024)[1]
 		print "wifi link up"
-	def disconnect(self):
+
+	def stopIPService(self):
 		self.ipSocket.close()
 
 	def write(self, msg):
