@@ -23,11 +23,13 @@ class Main:
 		stop_flag = 0
 		while stop_flag == 0:
 			time.sleep (delay)
-			print "Bluetooth queue length: " , len(btq)
+
 			if len(btq) >0:
 				msg = btq.popleft()
-				pc.write()
+				print "BT queue length after pop: " , len(btq)
+				pc.write(msg)
 				print "%s: %s --msg: %s" % ( threadName, time.ctime(time.time()), msg)
+
 
 	def ipRead (threadName, delay, pc, ipq):
 		stop_flag = 0
@@ -35,6 +37,7 @@ class Main:
 			time.sleep (delay)
 			msg = pc.read()
 			ipq.append(msg)
+			print "IP queue length after append: ", len(ipq)
 			print "%s: %s--msg: %s" % ( threadName, time.ctime(time.time()),msg )
 
 	def btWrite (threadName, delay, android, ipq):
@@ -43,6 +46,7 @@ class Main:
 			time.sleep (delay)
 			if len(ipq) >0:
 				msg = ipq.popleft()
+				print "IP queue length after pop: " , len(ipq)
 				android.write(msg)
 				print "%s: %s --msg: %s" % ( threadName, time.ctime(time.time()), msg)
 
@@ -52,6 +56,7 @@ class Main:
 			time.sleep (delay)
 			msg = android.read()
 			btq.append(msg)
+			print "BT queue length after append: ", len(btq)
 			print "%s: %s--msg: %s" % ( threadName, time.ctime(time.time()),msg )
 
 
