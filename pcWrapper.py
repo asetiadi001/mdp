@@ -11,7 +11,7 @@ class pcWrapper:
 		self.ipSocket.bind((self.tcp_ip, self.port))
 		self.pcaddr = None
 
-	def startIPService(threadName, delay):
+	def startIPService(threadName, self, delay):
 		while True:
 			time.sleep(delay)
 			if self.pcaddr is not None:
