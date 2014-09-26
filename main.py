@@ -12,9 +12,10 @@ from pcWrapper import *
 class Main:
 	def __init__(self):
 		self.android = androidWrapper()
-		self.pc = pcWrapper()
-		self.android.startBTService()
-		self.pc.startIPService()
+		#self.pc = pcWrapper()
+		thread.start_new_thread(self.android.startBTService(), ())
+		thread.start_new_thread(self.pc.startIPService(), ())
+		#self.pc.startIPService()
 		self.ipq = deque([])
 		self.btq = deque ([])
 
