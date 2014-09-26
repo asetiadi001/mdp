@@ -13,8 +13,8 @@ class Main:
 	def __init__(self):
 		self.android = androidWrapper()
 		self.pc = pcWrapper()
-		thread.start_new_thread(1, self.android.startBTService(), ())
-		thread.start_new_thread(1, self.pc.startIPService(), ())
+		thread.start_new_thread(1.0, self.android.startBTService(), ())
+		thread.start_new_thread(1.0, self.pc.startIPService(), ())
 		#self.pc.startIPService()
 		self.ipq = deque([])
 		self.btq = deque ([])
