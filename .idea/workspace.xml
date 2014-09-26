@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f8a1c6d-f1b6-4712-82d7-76385bc475b7" name="Default" comment="put float instead of int for delay">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/androidWrapper.py" afterPath="$PROJECT_DIR$/androidWrapper.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pcWrapper.py" afterPath="$PROJECT_DIR$/pcWrapper.py" />
     </list>
     <ignored path="mdp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,10 +26,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="8" selection-start="317" selection-end="317" vertical-scroll-proportion="0.24363057" vertical-offset="0" max-vertical-offset="1309">
+            <state line="17" column="29" selection-start="399" selection-end="399" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1309">
               <folding />
             </state>
           </provider>
@@ -38,17 +38,21 @@
       <file leaf-file-name="androidWrapper.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/androidWrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="19" selection-start="389" selection-end="389" vertical-scroll-proportion="0.0" vertical-offset="86" max-vertical-offset="714">
-              <folding />
+            <state line="19" column="8" selection-start="565" selection-end="643" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pcWrapper.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="pcWrapper.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pcWrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
-              <folding />
+            <state line="15" column="26" selection-start="474" selection-end="474" vertical-scroll-proportion="0.40605095" vertical-offset="0" max-vertical-offset="867">
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -71,9 +75,9 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
+        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/androidWrapper.py" />
         <option value="$PROJECT_DIR$/pcWrapper.py" />
-        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -357,14 +361,18 @@
     <entry file="file://$PROJECT_DIR$/androidWrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="9" selection-start="541" selection-end="541" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="714">
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pcWrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="28" selection-start="476" selection-end="476" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="816">
-          <folding />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -378,35 +386,43 @@
     <entry file="file://$PROJECT_DIR$/androidWrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="31" selection-start="790" selection-end="790" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697">
-          <folding />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pcWrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="0" selection-start="171" selection-end="171" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="816">
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="29" selection-start="399" selection-end="399" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1309">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/androidWrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="19" selection-start="389" selection-end="389" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
-          <folding />
+        <state line="19" column="8" selection-start="565" selection-end="643" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pcWrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="8" selection-start="317" selection-end="317" vertical-scroll-proportion="0.24363057" vertical-offset="0" max-vertical-offset="1309">
-          <folding />
+        <state line="15" column="26" selection-start="474" selection-end="474" vertical-scroll-proportion="0.40605095" vertical-offset="0" max-vertical-offset="867">
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
