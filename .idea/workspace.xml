@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7f8a1c6d-f1b6-4712-82d7-76385bc475b7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
+    <list default="true" id="7f8a1c6d-f1b6-4712-82d7-76385bc475b7" name="Default" comment="put float instead of int for delay">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mdp.iws" />
@@ -26,10 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="35" selection-start="344" selection-end="344" vertical-scroll-proportion="0.24363057" vertical-offset="0" max-vertical-offset="1309">
+            <state line="16" column="35" selection-start="344" selection-end="344" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1309">
               <folding />
             </state>
           </provider>
@@ -44,10 +43,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pcWrapper.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="pcWrapper.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pcWrapper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="42" selection-start="421" selection-end="421" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
+            <state line="14" column="42" selection-start="421" selection-end="421" vertical-scroll-proportion="0.3789809" vertical-offset="0" max-vertical-offset="816">
               <folding />
             </state>
           </provider>
@@ -292,7 +291,11 @@
       <created>1411696325804</created>
       <updated>1411696325804</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="put float instead of int for delay">
+      <created>1411696492361</created>
+      <updated>1411696492361</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -336,7 +339,8 @@
     <MESSAGE value="make startService multithread" />
     <MESSAGE value="restore pc declaration." />
     <MESSAGE value="put delay." />
-    <option name="LAST_COMMIT_MESSAGE" value="put delay." />
+    <MESSAGE value="put float instead of int for delay" />
+    <option name="LAST_COMMIT_MESSAGE" value="put float instead of int for delay" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -391,16 +395,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pcWrapper.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="42" selection-start="421" selection-end="421" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
+        <state line="16" column="35" selection-start="344" selection-end="344" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1309">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/pcWrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="35" selection-start="344" selection-end="344" vertical-scroll-proportion="0.24363057" vertical-offset="0" max-vertical-offset="1309">
+        <state line="14" column="42" selection-start="421" selection-end="421" vertical-scroll-proportion="0.3789809" vertical-offset="0" max-vertical-offset="816">
           <folding />
         </state>
       </provider>
