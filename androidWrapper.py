@@ -1,3 +1,4 @@
+import time
 from bluetooth import *
 
 class androidWrapper:
@@ -15,10 +16,14 @@ class androidWrapper:
 				   profiles= [SERIAL_PORT_PROFILE],
 				  )
 
-	def startBTService(self):
-		print "waiting for connection on RFCOMM channel %d" % (self.port)
-		self.client_sock, self.client_info= self.server_sock.accept()
-		print "Accepted connection from ", self.client_info
+	def startBTService(self, delay):
+		while True:
+			time.sleep(delay)
+			if self.client_sock is not None:
+				break
+			print "waiting for connection on RFCOMM channel %d" % (self.port)
+			self.client_sock, self.client_info= self.server_sock.accept()
+			print "Accepted connection from ", self.client_info
 
 	def stopBTService(self):
 		self.client_sock.close()

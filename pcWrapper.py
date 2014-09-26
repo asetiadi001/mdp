@@ -1,5 +1,5 @@
 import socket
-
+import time
 
 class pcWrapper:
 	def __init__(self):
@@ -9,8 +9,12 @@ class pcWrapper:
 		self.ipSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
 		self.ipSocket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST,1)
 		self.ipSocket.bind((self.tcp_ip, self.port))
-
-	def startIPService(self):
+		self.pcaddr = None
+	def startIPService(self, delay):
+		while True:
+			time.sleep(delay)
+			if self.pcaddr is not None:
+				break
 		print "waiting for WIFI connection..."
 		self.pcaddr = self.ipSocket.recvfrom(1024)[1]
 		print "wifi link up"
