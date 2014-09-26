@@ -16,7 +16,7 @@ class androidWrapper:
 				   profiles= [SERIAL_PORT_PROFILE],
 				  )
 
-	def startBTService(self, delay):
+	def startBTService(threadName, delay):
 		while True:
 			time.sleep(delay)
 			if self.client_sock is not None:

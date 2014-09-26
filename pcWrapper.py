@@ -10,7 +10,8 @@ class pcWrapper:
 		self.ipSocket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST,1)
 		self.ipSocket.bind((self.tcp_ip, self.port))
 		self.pcaddr = None
-	def startIPService(self, delay):
+
+	def startIPService(threadName, delay):
 		while True:
 			time.sleep(delay)
 			if self.pcaddr is not None:
