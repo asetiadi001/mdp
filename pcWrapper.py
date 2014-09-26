@@ -12,7 +12,7 @@ class pcWrapper:
 		self.ipSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
 		self.ipSocket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST,1)
 		self.ipSocket.bind((self.tcp_ip, self.port))
-		print "waiting..."
+		print "waiting for WIFI connection..."
 		self.pcaddr = self.ipSocket.recvfrom(1024)[1]
 		print "wifi link up"
 
