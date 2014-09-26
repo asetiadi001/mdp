@@ -22,7 +22,7 @@ class androidWrapper:
 			if self.client_sock is not None:
 				break
 			print "waiting for connection on RFCOMM channel %d" % (self.port)
-			self.client_sock, self.client_info= self.server_sock.accept()
+			self.client_sock, self.client_info = self.server_sock.accept()
 			print "Accepted connection from ", self.client_info
 
 	def stopBTService(self):
@@ -35,7 +35,7 @@ class androidWrapper:
 		print "Write to Android: %s" %(msg)
 
 	def read(self):
-		if self.client_sock.recv(1024) is not None:
+		if self.client_sock is not None:
 			msg = self.client_sock.recv(1024)
 		print "Read from Android: %s" %(msg)
 		return msg

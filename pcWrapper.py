@@ -16,9 +16,9 @@ class pcWrapper:
 			time.sleep(delay)
 			if self.pcaddr is not None:
 				break
-		print "waiting for WIFI connection..."
-		self.pcaddr = self.ipSocket.recvfrom(1024)[1]
-		print "wifi link up"
+			print "waiting for WIFI connection..."
+			self.pcaddr = self.ipSocket.recvfrom(1024)[1]
+			print "wifi link up"
 
 	def stopIPService(self):
 		self.ipSocket.close()
