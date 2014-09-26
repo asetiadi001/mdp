@@ -13,9 +13,6 @@ class Main:
 	def __init__(self):
 		self.android = androidWrapper()
 		self.pc = pcWrapper()
-		thread.start_new_thread(self.android.startBTService, (self.android, 1.0, ))
-		thread.start_new_thread(self.pc.startIPService, (self.pc, 1.0, ))
-		#self.pc.startIPService()
 		self.ipq = deque([])
 		self.btq = deque ([])
 
@@ -65,6 +62,13 @@ class Main:
 
 	def mainStart(self):
 		#try:
+		finish1= False
+		finish2= False
+		while True:
+			thread.start_new_thread(self.android.startBTService, (self.android, 1.0, finish1 ))
+			thread.start_new_thread(self.pc.startIPService, (self.pc, 1.0, finish2 ))
+			if finish1 and finish2:
+				break
 
 		thread.start_new_thread (self.ipWrite, (0.5, self.pc, self.btq))
 		thread.start_new_thread (self.ipRead,  (0.5, self.pc, self.ipq))

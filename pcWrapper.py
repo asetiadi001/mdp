@@ -11,14 +11,17 @@ class pcWrapper:
 		self.ipSocket.bind((self.tcp_ip, self.port))
 		self.pcaddr = None
 
-	def startIPService(threadName, self, delay):
+	def startIPService(threadName, self, delay, finish2):
 		while True:
 			time.sleep(delay)
 			if self.pcaddr is not None:
+				finish2=True
+				print "wifi link up"
 				break
 			print "waiting for WIFI connection..."
 			self.pcaddr = self.ipSocket.recvfrom(1024)[1]
-			print "wifi link up"
+
+
 
 	def stopIPService(self):
 		self.ipSocket.close()
