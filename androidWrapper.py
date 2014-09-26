@@ -37,6 +37,8 @@ class androidWrapper:
 	def read(self):
 		if self.client_sock is not None:
 			msg = self.client_sock.recv(1024)
-		print "Read from Android: %s" %(msg)
-		return msg
+			print "Read from Android: %s" %(msg)
+			return msg
+		else:
+			return None
 
