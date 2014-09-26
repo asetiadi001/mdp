@@ -7,16 +7,16 @@ class androidWrapper:
 		self.server_sock.bind(("",PORT_ANY))
 		self.client_sock = None
 		self.client_info = None
-
-	def startBTService(self):
 		self.server_sock.listen(1)
-		port= self.server_sock.getsockname()[1]
+		self.port = self.server_sock.getsockname()[1]
 		advertise_service( self.server_sock, "MDPGrp18",
 				   service_id= self.uuid,
 				   service_classes= [self.uuid, SERIAL_PORT_CLASS],
 				   profiles= [SERIAL_PORT_PROFILE],
 				  )
-		print "waiting for connection on RFCOMM channel %d" % (port)
+
+	def startBTService(self):
+		print "waiting for connection on RFCOMM channel %d" % (self.port)
 		self.client_sock, self.client_info= self.server_sock.accept()
 		print "Accepted connection from ", self.client_info
 
