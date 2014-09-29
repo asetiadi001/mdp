@@ -67,7 +67,7 @@ class Main:
 		thread.start_new_thread(self.android.startBTService, (1.0,ready1))
 		thread.start_new_thread(self.pc.startIPService, (1.0,ready2))
 		while True:
-			if ready1!=True and ready2!=True:
+			if ready1[0]!=True and ready2[0]!=True:
 				pass
 			else:
 				print "break off"
