@@ -62,18 +62,16 @@ class Main:
 
 
 	def startServices(self):
-		ready1=False
-		Ready2=False
-		try:
-			ready1= thread.start_new_thread(self.android.startBTService, (1,))
-		except Exception as e:
-			print e
-
-		ready2= thread.start_new_thread(self.pc.startIPService, (1.0,))
+		ready1=[False]
+		ready2=[False]
+		thread.start_new_thread(self.android.startBTService, (1.0,ready1))
+		thread.start_new_thread(self.pc.startIPService, (1.0,ready2))
 		while True:
 			if ready1!=True and ready2!=True:
 				pass
 			else:
+				print "break off"
+				time.sleep(3)
 				break
 
 	def mainStart(self):
