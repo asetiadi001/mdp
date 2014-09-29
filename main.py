@@ -51,7 +51,7 @@ class Main:
 		stop_flag = 0
 		while stop_flag == 0:
 			time.sleep (delay)
-			if android.read()!=None:
+			if android.read()!='':
 				msg = android.read()
 				btq.append(msg)
 				print "BT queue length after append: ", len(btq)
