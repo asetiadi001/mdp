@@ -20,7 +20,6 @@ class Main:
 		stop_flag = 0
 		while stop_flag == 0:
 			time.sleep (delay)
-
 			if len(btq) >0:
 				msg = btq.popleft()
 				print "BT queue length after pop: " , len(btq)
@@ -32,7 +31,7 @@ class Main:
 		stop_flag = 0
 		while stop_flag == 0:
 			time.sleep (delay)
-			if pc.read()!='':
+			if pc.read()!=None:
 				msg = pc.read()
 				ipq.append(msg)
 				print "IP queue length after append: ", len(ipq)
@@ -52,7 +51,7 @@ class Main:
 		stop_flag = 0
 		while stop_flag == 0:
 			time.sleep (delay)
-			if android.read()!='':
+			if android.read()!=None:
 				msg = android.read()
 				btq.append(msg)
 				print "BT queue length after append: ", len(btq)
