@@ -32,10 +32,11 @@ class Main:
 		stop_flag = 0
 		while stop_flag == 0:
 			time.sleep (delay)
-			msg = pc.read()
-			ipq.append(msg)
-			print "IP queue length after append: ", len(ipq)
-			print "%s: %s--msg: %s" % ("ipRead", time.ctime(time.time()),msg )
+			if pc.read()!='':
+				msg = pc.read()
+				ipq.append(msg)
+				print "IP queue length after append: ", len(ipq)
+				print "%s: %s--msg: %s" % ("ipRead", time.ctime(time.time()),msg )
 
 	def btWrite (self, delay, android, ipq):
 		stop_flag = 0
@@ -51,10 +52,11 @@ class Main:
 		stop_flag = 0
 		while stop_flag == 0:
 			time.sleep (delay)
-			msg = android.read()
-			btq.append(msg)
-			print "BT queue length after append: ", len(btq)
-			print "%s: %s--msg: %s" % ("btRead", time.ctime(time.time()),msg )
+			if android.read()!='':
+				msg = android.read()
+				btq.append(msg)
+				print "BT queue length after append: ", len(btq)
+				print "%s: %s--msg: %s" % ("btRead", time.ctime(time.time()),msg )
 
 	def serialWrite(self, delay):
 		stop_flag = 0
@@ -63,8 +65,8 @@ class Main:
 	def startServices(self):
 		ready1=False
 		Ready2=False
-		ready1= thread.start_new_thread(self.android.startBTService, (1))
-		ready2= thread.start_new_thread(self.pc.startIPService, (1.0))
+		ready1= thread.start_new_thread(self.android.startBTService, (1,))
+		ready2= thread.start_new_thread(self.pc.startIPService, (1.0,))
 		while ready1 is False and ready2 is False:
 			time.sleep(1.0)
 
