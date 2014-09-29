@@ -29,7 +29,7 @@
       <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="21" selection-start="1931" selection-end="1931" vertical-scroll-proportion="0.62261146" vertical-offset="952" max-vertical-offset="1751">
+            <state line="72" column="19" selection-start="1795" selection-end="1795" vertical-scroll-proportion="0.46019107" vertical-offset="935" max-vertical-offset="1700">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -521,7 +521,11 @@
       <created>1411967966991</created>
       <updated>1411967966991</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="fix the lock">
+      <created>1411968052429</created>
+      <updated>1411968052429</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -594,7 +598,8 @@
     <MESSAGE value="add sentinel on read for None" />
     <MESSAGE value="fix the lock condition" />
     <MESSAGE value="put exception catch" />
-    <option name="LAST_COMMIT_MESSAGE" value="put exception catch" />
+    <MESSAGE value="fix the lock" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix the lock" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -856,7 +861,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="21" selection-start="1931" selection-end="1931" vertical-scroll-proportion="0.62261146" vertical-offset="952" max-vertical-offset="1751">
+        <state line="72" column="19" selection-start="1795" selection-end="1795" vertical-scroll-proportion="0.46019107" vertical-offset="935" max-vertical-offset="1700">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

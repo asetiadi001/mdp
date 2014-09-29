@@ -71,11 +71,8 @@ class Main:
 
 		ready2= thread.start_new_thread(self.pc.startIPService, (1.0,))
 		while True:
-			print ready1
-			print type(ready1)
-			print type(ready2)
 			if ready1!=True and ready2!=True:
-				print "in loop"
+				pass
 			else:
 				break
 
