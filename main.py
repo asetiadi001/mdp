@@ -75,9 +75,9 @@ class Main:
 			print type(ready1)
 			print type(ready2)
 			if ready1!=True and ready2!=True:
-				break
-			else:
 				print "in loop"
+			else:
+				break
 
 	def mainStart(self):
 

@@ -29,7 +29,7 @@
       <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="44" selection-start="1891" selection-end="1891" vertical-scroll-proportion="0.54140127" vertical-offset="952" max-vertical-offset="1751">
+            <state line="79" column="21" selection-start="1931" selection-end="1931" vertical-scroll-proportion="0.62261146" vertical-offset="952" max-vertical-offset="1751">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -517,7 +517,11 @@
       <created>1411967879326</created>
       <updated>1411967879326</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="put exception catch">
+      <created>1411967966991</created>
+      <updated>1411967966991</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -852,7 +856,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="44" selection-start="1891" selection-end="1891" vertical-scroll-proportion="0.54140127" vertical-offset="952" max-vertical-offset="1751">
+        <state line="79" column="21" selection-start="1931" selection-end="1931" vertical-scroll-proportion="0.62261146" vertical-offset="952" max-vertical-offset="1751">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
