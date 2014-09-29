@@ -66,14 +66,15 @@ class Main:
 		Ready2=False
 		ready1= thread.start_new_thread(self.android.startBTService, (1,))
 		ready2= thread.start_new_thread(self.pc.startIPService, (1.0,))
-		while ready1 is False and ready2 is False:
-			time.sleep(1.0)
+		while True:
+			if ready1 and ready2:
+				break
 
 	def mainStart(self):
 
 
 
-
+		print "entering mainStart"
 		thread.start_new_thread (self.ipWrite, (0.5, self.pc, self.btq))
 		thread.start_new_thread (self.ipRead,  (0.5, self.pc, self.ipq))
 		thread.start_new_thread (self.btWrite, (0.5, self.android, self.ipq))

@@ -29,7 +29,7 @@
       <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="35" selection-start="1325" selection-end="1325" vertical-scroll-proportion="0.81050956" vertical-offset="392" max-vertical-offset="1581">
+            <state line="70" column="21" selection-start="1785" selection-end="1785" vertical-scroll-proportion="0.4044586" vertical-offset="936" max-vertical-offset="1598">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -484,7 +484,11 @@
       <created>1411962325721</created>
       <updated>1411962325721</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="add sentinel on read for None">
+      <created>1411962540288</created>
+      <updated>1411962540288</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -554,7 +558,8 @@
     <MESSAGE value="multithread initialization." />
     <MESSAGE value="add arduino and test" />
     <MESSAGE value="add sentinel on read" />
-    <option name="LAST_COMMIT_MESSAGE" value="add sentinel on read" />
+    <MESSAGE value="add sentinel on read for None" />
+    <option name="LAST_COMMIT_MESSAGE" value="add sentinel on read for None" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -816,7 +821,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="35" selection-start="1325" selection-end="1325" vertical-scroll-proportion="0.81050956" vertical-offset="392" max-vertical-offset="1581">
+        <state line="70" column="21" selection-start="1785" selection-end="1785" vertical-scroll-proportion="0.4044586" vertical-offset="936" max-vertical-offset="1598">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
