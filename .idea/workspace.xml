@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f8a1c6d-f1b6-4712-82d7-76385bc475b7" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mdp.iws" />
@@ -28,7 +29,7 @@
       <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="0" selection-start="1715" selection-end="1715" vertical-scroll-proportion="0.6210191" vertical-offset="800" max-vertical-offset="1751">
+            <state line="76" column="44" selection-start="1891" selection-end="1891" vertical-scroll-proportion="0.54140127" vertical-offset="952" max-vertical-offset="1751">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -512,7 +513,11 @@
       <created>1411967830563</created>
       <updated>1411967830563</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="put exception catch">
+      <created>1411967879326</created>
+      <updated>1411967879326</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -847,7 +852,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="0" selection-start="1715" selection-end="1715" vertical-scroll-proportion="0.6210191" vertical-offset="800" max-vertical-offset="1751">
+        <state line="76" column="44" selection-start="1891" selection-end="1891" vertical-scroll-proportion="0.54140127" vertical-offset="952" max-vertical-offset="1751">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

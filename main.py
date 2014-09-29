@@ -74,7 +74,7 @@ class Main:
 			print ready1
 			print type(ready1)
 			print type(ready2)
-			if ready1 and ready2:
+			if ready1!=True and ready2!=True:
 				break
 			else:
 				print "in loop"
