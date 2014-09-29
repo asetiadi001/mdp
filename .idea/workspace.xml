@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f8a1c6d-f1b6-4712-82d7-76385bc475b7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/androidWrapper.py" afterPath="$PROJECT_DIR$/androidWrapper.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pcWrapper.py" afterPath="$PROJECT_DIR$/pcWrapper.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mdp.iws" />
@@ -31,7 +29,7 @@
       <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="33" selection-start="1829" selection-end="1829" vertical-scroll-proportion="0.32324842" vertical-offset="1021" max-vertical-offset="1666">
+            <state line="41" column="29" selection-start="979" selection-end="979" vertical-scroll-proportion="0.26910827" vertical-offset="528" max-vertical-offset="1615">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -522,19 +520,31 @@
       <created>1411968143241</created>
       <updated>1411968143241</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="fix the lock_2">
+      <created>1411969084459</created>
+      <updated>1411969084459</updated>
+    </task>
+    <task id="LOCAL-00019" summary="fix the lock_2">
+      <created>1411969242416</created>
+      <updated>1411969242416</updated>
+    </task>
+    <task id="LOCAL-00020" summary="change and to or">
+      <created>1411969323749</created>
+      <updated>1411969323749</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1320" height="784" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24941543" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24941543" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -597,7 +607,8 @@
     <MESSAGE value="put exception catch" />
     <MESSAGE value="fix the lock" />
     <MESSAGE value="fix the lock_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix the lock_2" />
+    <MESSAGE value="change and to or" />
+    <option name="LAST_COMMIT_MESSAGE" value="change and to or" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -836,13 +847,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/androidWrapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="12" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="49" selection-start="522" selection-end="522" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
@@ -857,9 +861,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/androidWrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="12" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="33" selection-start="1829" selection-end="1829" vertical-scroll-proportion="0.32324842" vertical-offset="1021" max-vertical-offset="1666">
+        <state line="41" column="29" selection-start="979" selection-end="979" vertical-scroll-proportion="0.26910827" vertical-offset="528" max-vertical-offset="1615">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

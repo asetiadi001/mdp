@@ -31,11 +31,11 @@ class Main:
 		stop_flag = 0
 		while stop_flag == 0:
 			time.sleep (delay)
-			if pc.read()!=None:
-				msg = pc.read()
-				ipq.append(msg)
-				print "IP queue length after append: ", len(ipq)
-				print "%s: %s--msg: %s" % ("ipRead", time.ctime(time.time()),msg )
+			#if pc.read()!=None:
+			msg = pc.read()
+			ipq.append(msg)
+			print "IP queue length after append: ", len(ipq)
+			print "%s: %s--msg: %s" % ("ipRead", time.ctime(time.time()),msg )
 
 	def btWrite (self, delay, android, ipq):
 		stop_flag = 0
@@ -51,11 +51,11 @@ class Main:
 		stop_flag = 0
 		while stop_flag == 0:
 			time.sleep (delay)
-			if android.read()!=None:
-				msg = android.read()
-				btq.append(msg)
-				print "BT queue length after append: ", len(btq)
-				print "%s: %s--msg: %s" % ("btRead", time.ctime(time.time()),msg )
+			#if android.read()!=None:
+			msg = android.read()
+			btq.append(msg)
+			print "BT queue length after append: ", len(btq)
+			print "%s: %s--msg: %s" % ("btRead", time.ctime(time.time()),msg )
 
 	def serialWrite(self, delay):
 		stop_flag = 0
@@ -75,9 +75,6 @@ class Main:
 				break
 
 	def mainStart(self):
-
-
-
 		print "entering mainStart"
 		thread.start_new_thread (self.ipWrite, (0.5, self.pc, self.btq))
 		thread.start_new_thread (self.ipRead,  (0.5, self.pc, self.ipq))
@@ -85,7 +82,7 @@ class Main:
 		thread.start_new_thread (self.btRead,  (0.5, self.android, self.btq))
 		#except:
 		while True:
-			time.sleep(2.0)
+			time.sleep(4.0)
 
 
 test = Main()
