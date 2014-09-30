@@ -16,7 +16,7 @@ class androidWrapper:
 				   profiles= [SERIAL_PORT_PROFILE],
 				  )
 
-	def startBTService(self, delay, ready1):
+	def startBTService(self, ready1):
 			print "waiting for connection on RFCOMM channel %d" % (self.port)
 			self.client_sock, self.client_info = self.server_sock.accept()
 			print "Accepted connection from ", self.client_info

@@ -6,7 +6,7 @@ class arduinoWrapper:
         self.port = '/dev/ttyACM0'
         self.baud = 9600
 
-    def startSerialService(self, delay, ready3):
+    def startSerialService(self, ready3):
 		self.serSock = serial.Serial(self.port, self.baud)
 		#init socket connection
 		self.serSock.write("")
