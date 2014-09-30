@@ -16,15 +16,14 @@ class Main:
 		self.btq = deque([])
 		self.serialq = deque([])
 
-	def ipWrite (self, delay, pc, serialq):
+	def ipWrite (self, delay, pc, ipq):
 		stop_flag = 0
 		while stop_flag == 0:
 			time.sleep (delay)
-			if len(serialq) >0:
-				msg = serialq.popleft()
-				print "WiFi queue length after pop: " , len(serialq)
+			if len(ipq) >0:
+				msg = ipq.popleft()
+				print "WiFi queue length after pop: " , len(ipq)
 				pc.write(msg)
-				print "%s: %s --msg: %s" % ("ipWrite", time.ctime(time.time()), msg)
 
 	def ipRead (self, delay, pc, ipq):
 		stop_flag = 0
@@ -73,7 +72,7 @@ class Main:
 				print "BT queue length after pop: ", len(btq)
 				#print "%s: %s--msg: %s" % ("serialRead", time.ctime(time.time()),msg )
 	
-	def serialRead(self, delay, arduino, serialq):
+	def serialRead(self, delay, arduino, serialq, ipq):
 		stop_flag = 0
 		while stop_flag == 0:
 			print "serialRead in blocking mode"
@@ -82,6 +81,7 @@ class Main:
 			#append the msg to both bluetooth queue and ip queue
 			if(msg!=''):
 				serialq.append(msg)
+				ipq.append(msg)
 				#ipq.append(msg)
 				print "From arduino: ",msg
 				print "Serial queue length after append: ", len(serialq)
@@ -111,11 +111,11 @@ class Main:
 		print "start received...\nstarting communication:"
 
 		#thread.start_new_thread (self.ipRead,  (0.5, self.pc, self.btq, self.serialq))
-		#thread.start_new_thread (self.ipWrite, (0.5, self.pc, self.ipq))
+		thread.start_new_thread (self.ipWrite, (0.5, self.pc, self.ipq))
 		thread.start_new_thread (self.btRead,  (0.5, self.android, self.btq))
 		thread.start_new_thread (self.btWrite, (0.5, self.android, self.serialq))
 
-		thread.start_new_thread (self.serialRead,  (0.5, self.arduino, self.serialq))
+		thread.start_new_thread (self.serialRead,  (0.5, self.arduino, self.serialq, self.ipq))
 		thread.start_new_thread (self.serialWrite, (0.5, self.arduino, self.btq))
 
 		#except:
