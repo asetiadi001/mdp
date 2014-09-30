@@ -4,10 +4,10 @@ class arduinoWrapper:
 
     def __init__(self):
         self.port = '/dev/ttyACM0'
-        self.baud = 115200
+        self.baud = 9600
 
     def startSerialService(self):
-        self.serSock = serial.Serial (self.port, self.baud)
+        self.serSock = serial.Serial(self.port, self.baud)
         #init socket connection
         self.serSock.write("")
         self.serSock.write("")
@@ -24,3 +24,7 @@ class arduinoWrapper:
         msg = self.serSock.readline()
         print "Read from Arduino: %s" %(msg)
         return msg
+
+test= arduinoWrapper()
+test.startSerialService()
+test.write("f")

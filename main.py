@@ -31,8 +31,8 @@ class Main:
 		stop_flag = 0
 		while stop_flag == 0:
 			time.sleep (delay)
-			if pc.read()!='':
-				msg = pc.read()
+			msg = pc.read()
+			if msg !='':
 				ipq.append(msg)
 				print "IP queue length after append: ", len(ipq)
 				print "%s: %s--msg: %s" % ("ipRead", time.ctime(time.time()),msg )
@@ -51,8 +51,8 @@ class Main:
 		stop_flag = 0
 		while stop_flag == 0:
 			time.sleep (delay)
-			if android.read()!='':
-				msg = android.read()
+			msg = android.read()
+			if msg !='':
 				btq.append(msg)
 				print "BT queue length after append: ", len(btq)
 				print "%s: %s--msg: %s" % ("btRead", time.ctime(time.time()),msg )

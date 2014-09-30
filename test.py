@@ -1,8 +1,10 @@
+import threading
 import thread
 import time
 from collections import deque
 
 gQueue = deque([1,2,3,4,5])
+exitFlag = 0
 class Test():
 
 	def __init__(self):
@@ -35,5 +37,19 @@ class Test():
 			time.sleep(3)
 			if len(gQueue)==0:
 				break
-aswin = Test()
-aswin.startEngine()
+
+class MultiThread(threading.Thread):
+	def __init__(self, threadID, name, counter):
+		threading.Thread.__init__(self)
+		self.threadID = threadID
+		self.name = name
+		self.couter = counter
+
+	def run(self):
+		print "Starting " + self.name
+
+def printTime(threadName, delay, counter):
+	while counter:
+		if exitFlag:
+			thread.exit()
+		print ""
