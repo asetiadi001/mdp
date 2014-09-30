@@ -68,17 +68,25 @@ public class pc_program{
         buildSocket();
         //for(int i = 0; i <20; i++);
         send("ready");
-        //send("ready");
         while (true){
             System.out.print("send(1) or receive(0): ");
-            
             choice = sc.nextInt();
             sc.nextLine();
             if(choice>0){
-            System.out.print("Say Something: ");
-            input = sc.nextLine();
-            send(input);}
-            else System.out.println("Receiving: " + receive());
+            	System.out.print("Say Something: ");
+            	input = sc.nextLine();
+            	send(input);
+            }
+            else{
+				System.out.println("Receiving(blocking till recevive a msg): ");
+            	try{
+            		while(true){
+            			String text=receive();
+            		}
+            	}catch(NoSuchElementException e){
+            		System.out.println("Going back...");
+            	}
+            }
             //send ("sent from pc\n");
         }
     }
