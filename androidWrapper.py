@@ -27,6 +27,8 @@ class androidWrapper:
 		self.server_sock.close()
 
 	def write(self,msg):
+		if msg=="FORWARD":
+			msg='F'
 		self.client_sock.send(msg)
 		print "Write to Android: %s" %(msg)
 
