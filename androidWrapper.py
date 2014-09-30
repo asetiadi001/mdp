@@ -27,15 +27,13 @@ class androidWrapper:
 		self.server_sock.close()
 
 	def write(self,msg):
-		if msg=="FORWARD":
-			msg='F'
 		self.client_sock.send(msg)
-		print "Write to Android: %s" %(msg)
+		#print "Write to Android: %s" %(msg)
 
 	def read(self):
 		if self.client_sock is not None:
 			msg = self.client_sock.recv(1024)
-			print "Read from Android: %s" %(msg)
+			#print "Read from Android: %s" %(msg)
 			return msg
 		else:
 			return None

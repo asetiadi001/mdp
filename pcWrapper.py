@@ -23,7 +23,7 @@ class pcWrapper:
 
 	def write(self, msg):
 		self.ipSocket.sendto(msg, self.pcaddr)
-		print "Write to PC: %s" %(msg)
+		#print "Write to PC: %s" %(msg)
 	
 	def read(self):
 			msg = self.ipSocket.recvfrom(1024)[0]

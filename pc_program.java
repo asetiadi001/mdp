@@ -51,7 +51,7 @@ public class pc_program{
 		DatagramPacket packet = new DatagramPacket(in_buf, in_buf.length);
 		try {
 			clientSocket.receive(packet);
-			return new String(packet.getData(), packet.getOffset(), packet.getLength());
+			return new String(packet.getData());//, packet.getOffset(), packet.getLength());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -82,6 +82,9 @@ public class pc_program{
             	try{
             		while(true){
             			String text=receive();
+            			if(text!=null){
+            				System.out.println(text);
+            			}
             		}
             	}catch(NoSuchElementException e){
             		System.out.println("Going back...");
