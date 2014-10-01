@@ -603,7 +603,11 @@
       <created>1412123430486</created>
       <updated>1412123430486</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Before trying implement all 3 service.">
+      <created>1412123449981</created>
+      <updated>1412123449981</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="ToolWindowManager">
