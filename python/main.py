@@ -1,12 +1,16 @@
+#!
 import thread
 import re
 from collections import deque
-from androidWrapper import *
-from pcWrapper import *
-from arduinoWrapper import *
+from lib.androidWrapper import *
+from lib.pcWrapper import *
+from lib.arduinoWrapper import *
 
 class Main:
+	"""
+	This class purpose is to clear the checklist for RPi
 
+	"""
 	def __init__(self):
 		self.android = androidWrapper()
 		self.pc = pcWrapper()
@@ -23,8 +27,9 @@ class Main:
 			if len(ipq) >0:
 				msg = ipq.popleft()
 				#print "WiFi queue length after pop: " , len(ipq)
-				print "writing to pc: ", msg
+
 				pc.write(msg)
+				print "writing to pc: ", msg, "|success..."
 
 	def ipRead (self, delay, pc, btq, serq):
 		stop_flag = 0
@@ -34,7 +39,7 @@ class Main:
 				btq.append(msg)
 				serq.append(msg)
 				#print "IP queue length after append: ", len(ipq)
-				print "append to btq and serq: ", msg
+				print "append to btq and serq: ", msg, "|success..."
 				#print "%s: %s--msg: %s" % ("ipRead", time.ctime(time.time()),msg )
 			time.sleep (delay)
 
@@ -46,8 +51,9 @@ class Main:
 			#print "btWrite awake - not"
 			if len(btq) >0:
 				msg = btq.popleft()
-				print "Writing to android: ", msg
+
 				android.write(msg)
+				print "Writing to android: ", msg, "|success..."
 				#print "Serial queue length after pop: " , len(serialq)
 
 	def btRead (self, delay, android, pcq, serq):
@@ -57,9 +63,10 @@ class Main:
 			msg = android.read()
 			if(msg!=''):
 				#print "From android: %s" % (msg)
-				print "Append android queue: ", msg
+
 				pcq.append(msg)
 				serq.append(msg)
+				print "append to pc and serial queue: ", msg, "|success"
 				#print "BT queue length after append: ", len(btq)
 				time.sleep (delay)
 
@@ -70,8 +77,8 @@ class Main:
 			#print "serialWrite awake - not"
 			if len(serq) > 0:
 				msg = serq.popleft()
-				print "Writing to arduino: %s" %(msg)
 				arduino.write(msg)
+				print "Writing to arduino: %s|success..." %(msg)
 				#print "BT queue length after pop: ", len(btq)
 				#print "%s: %s--msg: %s" % ("serialRead", time.ctime(time.time()),msg )
 	
@@ -83,10 +90,10 @@ class Main:
 			msg = arduino.read()
 			#append the msg to both bluetooth queue and ip queue
 			if re.match(r'[a-zA-Z0-9]+',msg,re.I):
-				print "Append to pc and arduino queue: ", msg
+
 				btq.append(msg)
 				ipq.append(msg)
-
+				print "Append to pc and arduino queue: ", msg, "|success..."
 				#print "From arduino: ",msg
 				#print "Serial queue length after append: ", len(serialq)
 				#print "IP queue length after append: ", len(ipq)
@@ -116,10 +123,10 @@ class Main:
 
 		thread.start_new_thread (self.ipRead,  (0.5, self.pc, self.btq, self.serialq))
 		thread.start_new_thread (self.ipWrite, (0.5, self.pc, self.ipq))
-		thread.start_new_thread (self.btRead,  (0.5, self.android, self.btq))
-		thread.start_new_thread (self.btWrite, (0.5, self.android, self.serialq))
-		thread.start_new_thread (self.serialRead,  (0.5, self.arduino, self.serialq, self.ipq))
-		thread.start_new_thread (self.serialWrite, (0.5, self.arduino, self.btq))
+		thread.start_new_thread (self.btRead,  (0.5, self.android, self.ipq, self.serialq))
+		thread.start_new_thread (self.btWrite, (0.5, self.android, self.btq))
+		thread.start_new_thread (self.serialRead,  (0.5, self.arduino, self.btq, self.ipq))
+		thread.start_new_thread (self.serialWrite, (0.5, self.arduino, self.serialq))
 
 		#except:
 		while True:
