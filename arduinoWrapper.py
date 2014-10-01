@@ -1,12 +1,12 @@
 import serial
 
 class arduinoWrapper:
+	def __init__(self):
+		self.port = '/dev/ttyACM0'
+		self.baud = 9600
+		self.translation = {'FORWARD':'F', 'LEFT':'L', 'RIGHT':'R', 'STOP':'B'}
 
-    def __init__(self):
-        self.port = '/dev/ttyACM0'
-        self.baud = 9600
-
-    def startSerialService(self, ready3):
+	def startSerialService(self, ready3):
 		self.serSock = serial.Serial(self.port, self.baud)
 		#init socket connection
 		self.serSock.write("")
@@ -14,16 +14,14 @@ class arduinoWrapper:
 		print "serial link up"
 		ready3[0]=True
 
-    def stopSerialService(self):
-        self.serSock.close()
+	def stopSerialService(self):
+		self.serSock.close()
 
 	def write(self,msg):
-		self.serSock.write(msg)
-		if(msg=="FORWARD"):
-			msg='F'
-			print "Write to Arduino: %s" %(msg)
+			self.serSock.write(self.translation[msg])
+			print "Received: %s Send to Arduino: %s" %(msg, self.translation[msg])
 
-    def read(self):
-        msg = self.serSock.readline()
-        print "Read from Arduino: %s" %(msg)
-        return msg
+	def read(self):
+		msg = self.serSock.readline()
+		#print "Read from Arduino: %s" %(msg)
+		return msg
