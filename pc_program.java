@@ -51,7 +51,7 @@ public class pc_program{
 		DatagramPacket packet = new DatagramPacket(in_buf, in_buf.length);
 		try {
 			clientSocket.receive(packet);
-			return new String(packet.getData(), packet.getOffset(), packet.getLength());
+			return new String(packet.getData());//, packet.getOffset(), packet.getLength());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -68,17 +68,28 @@ public class pc_program{
         buildSocket();
         //for(int i = 0; i <20; i++);
         send("ready");
-        //send("ready");
         while (true){
             System.out.print("send(1) or receive(0): ");
-            
             choice = sc.nextInt();
             sc.nextLine();
             if(choice>0){
-            System.out.print("Say Something: ");
-            input = sc.nextLine();
-            send(input);}
-            else System.out.println("Receiving: " + receive());
+            	System.out.print("Say Something: ");
+            	input = sc.nextLine();
+            	send(input);
+            }
+            else{
+				System.out.println("Receiving(blocking till recevive a msg): ");
+            	try{
+            		while(true){
+            			String text=receive();
+            			if(text!=null){
+            				System.out.println(text);
+            			}
+            		}
+            	}catch(NoSuchElementException e){
+            		System.out.println("Going back...");
+            	}
+            }
             //send ("sent from pc\n");
         }
     }

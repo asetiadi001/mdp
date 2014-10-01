@@ -38,10 +38,11 @@ char* getRPiMsg(){
   while(Serial.available() > 0){
     if(index<19){
      charBuffer=Serial.read();
-     Serial.print("Buffer =");
-     Serial.println((int)charBuffer);
-     Serial.print("Index =");
-     Serial.println(index);
+     Serial.println(charBuffer);
+     //Serial.print("Buffer(int) =");
+     //Serial.println((int)charBuffer);
+     //Serial.print("Index =");
+     //Serial.println(index);
      streamBuffer[index]=charBuffer;
      index++; 
     }
@@ -50,13 +51,13 @@ char* getRPiMsg(){
  index=0;
  //Serial.println(strlen(streamBuffer));
  //Serial.print("streamBuffer is");
- //Serial.println(streamBuffer);
+ Serial.print(streamBuffer);
  return streamBuffer; 
 }
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
    Setpoint = 100;
    md.init();
    we.init(11,13,3,5);
