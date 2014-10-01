@@ -14,9 +14,8 @@ class pcWrapper:
 	def startIPService(self,ready2):
 			print "waiting for WIFI connection..."
 			self.pcaddr = self.ipSocket.recvfrom(1024)[1]
-			if self.pcaddr == "ready":
-				print "wifi link up"
-				ready2[0]=True
+			print "wifi link up"
+			ready2[0]=True
 
 	def stopIPService(self):
 		self.ipSocket.close()

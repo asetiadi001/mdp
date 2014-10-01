@@ -19,7 +19,7 @@ class arduinoWrapper:
 
 	def write(self,msg):
 			self.serSock.write(self.translation[msg])
-			#print "Received: %s Write to Arduino: %s" %(msg, self.translation[msg])
+			print "Received: %s Send to Arduino: %s" %(msg, self.translation[msg])
 
 	def read(self):
 		msg = self.serSock.readline()
