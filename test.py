@@ -55,7 +55,7 @@ def printTime(threadName, delay, counter):
 			thread.exit()
 		print ""
 
-if re.match(r'([0-7]).*', "aswin"):
+if re.match(r'[0-7].*', "-1aswin"):
 	print True
 else:
 	print False
