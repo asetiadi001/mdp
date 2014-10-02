@@ -26,7 +26,7 @@ class pcWrapper:
 	
 	def read(self):
 			msg = self.ipSocket.recvfrom(1024)[0]
-			print "Read from PC: %s" % (msg)
+			#print "Read from PC: %s" % (msg)
 			return msg
 
 #test= pcWrapper()

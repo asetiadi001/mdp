@@ -34,6 +34,7 @@ class Main:
 	def ipRead (self, delay, pc, btq, serq):
 		stop_flag = 0
 		while stop_flag == 0:
+			print 'pcRead in blocking mode while waiting for pc input...'
 			msg = pc.read()
 			if(msg!=''):
 				btq.append(msg)
@@ -85,7 +86,7 @@ class Main:
 	def serialRead(self, delay, arduino, btq, ipq):
 		stop_flag = 0
 		while stop_flag == 0:
-			print "serialRead in blocking mode"
+			print "serialRead in blocking mode waiting for arduino input"
 			#if arduino.read() !=None: #check for empty string/char when reading.
 			msg = arduino.read()
 			#append the msg to both bluetooth queue and ip queue
@@ -121,12 +122,12 @@ class Main:
 			time.sleep(0.5)
 		print "start received...\nstarting communication:"
 
-		thread.start_new_thread (self.ipRead,  (0.5, self.pc, self.btq, self.serialq))
-		thread.start_new_thread (self.ipWrite, (0.5, self.pc, self.ipq))
-		thread.start_new_thread (self.btRead,  (0.5, self.android, self.ipq, self.serialq))
-		thread.start_new_thread (self.btWrite, (0.5, self.android, self.btq))
-		thread.start_new_thread (self.serialRead,  (0.5, self.arduino, self.btq, self.ipq))
-		thread.start_new_thread (self.serialWrite, (0.5, self.arduino, self.serialq))
+		thread.start_new_thread (self.ipRead,  		(0.5, self.pc, self.btq, self.serialq))
+		thread.start_new_thread (self.ipWrite, 		(0.5, self.pc, self.ipq))
+		thread.start_new_thread (self.btRead,		(0.5, self.android, self.ipq, self.serialq))
+		thread.start_new_thread (self.btWrite,		(0.5, self.android, self.btq))
+		thread.start_new_thread (self.serialRead,	(0.5, self.arduino, self.btq, self.ipq))
+		thread.start_new_thread (self.serialWrite,	(0.5, self.arduino, self.serialq))
 
 		#except:
 		while True:
