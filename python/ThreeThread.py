@@ -76,7 +76,7 @@ class ThreeThread:
 				self.destination[msg[0]](msg[1:])
 			else:
 				print "Warning: [%s] from pc is in the wrong format!!!" % (msg)
-			time.sleep (delay)
+			#time.sleep (delay)
 
 	def btRead (self, delay, android):
 		while not self.stopflag:
@@ -87,7 +87,7 @@ class ThreeThread:
 				self.destination[msg[0]](msg[1:])
 			else:
 				print "Warning: [%s] from bluetooth is in the wrong format!!!" % (msg)
-			time.sleep (delay)
+			#ime.sleep (delay)
 
 	def serialRead(self, delay, arduino):
 		while not self.stopflag:
@@ -99,7 +99,7 @@ class ThreeThread:
 				self.destination[msg[0]](msg[1:])
 			else:
 				print "Warning: [%s] from arduino is in the wrong format!!!" % (msg)
-			time.sleep(delay)
+			#time.sleep(delay)
 
 	def startServices(self):
 		ready1=[False]
