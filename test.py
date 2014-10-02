@@ -2,6 +2,7 @@ import threading
 import thread
 import time
 from collections import deque
+import re
 
 gQueue = deque([1,2,3,4,5])
 exitFlag = 0
@@ -53,3 +54,8 @@ def printTime(threadName, delay, counter):
 		if exitFlag:
 			thread.exit()
 		print ""
+
+if re.match(r'([0-7]).*', "aswin"):
+	print True
+else:
+	print False

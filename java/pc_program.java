@@ -22,8 +22,8 @@ public class pc_program{
 		try {
 			clientSocket = new DatagramSocket();
 			targetAddr = RES_PI_ADDR;
-			in_buf = new byte[1024];
-			out_buf = new byte[1024];
+			in_buf = new byte[20];
+			out_buf = new byte[20];
             //	parser = new RobotInstructionParser();
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
@@ -83,6 +83,7 @@ public class pc_program{
             		while(true){
             			String text=receive();
             			if(text!=null){
+            				System.out.println("String length: "+text.length());
             				System.out.println(text);
             			}
             		}
