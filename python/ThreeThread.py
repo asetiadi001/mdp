@@ -21,19 +21,19 @@ class ThreeThread:
 		self.android = androidWrapper()
 		self.pc = pcWrapper()
 		self.arduino = arduinoWrapper()
-
-		self.ipq = deque([])
-		self.btq = deque([])
-		self.serialq = deque([])
+		self.stopflag = False
+		#self.ipq = deque([])
+		#self.btq = deque([])
+		#self.serialq = deque([])
 		self.destination ={
-			0:self.writeNone,
-			1:self.writePC,
-			2:self.writeAndroid,
-			3:self.writePCAn,
-			4:self.writeArduino,
-			5:self.writePCAr,
-			6:self.writeArAn,
-			7:self.writeAll
+			'0':self.writeNone,
+			'1':self.writePC,
+			'2':self.writeAndroid,
+			'3':self.writePCAn,
+			'4':self.writeArduino,
+			'5':self.writePCAr,
+			'6':self.writeArAn,
+			'7':self.writeAll
 		}
 	def writeNone(self):
 		pass
@@ -68,33 +68,34 @@ class ThreeThread:
 		self.writeArduino(msg)
 
 	def ipRead (self, delay, pc):
-		while  True:
+		while  not self.stopflag:
 			print 'ipRead in blocking mode while waiting for pc input...'
 			msg = pc.read()
-			if(re.match(r'[0-7].*', msg)):
+			print "From pc: ", msg
+			if msg is not None and (re.match(r'[0-7].+', msg)):
 				self.destination[msg[0]](msg[1:])
 			else:
 				print "Warning: [%s] from pc is in the wrong format!!!" % (msg)
 			time.sleep (delay)
 
 	def btRead (self, delay, android):
-		stop_flag = 0
-		while stop_flag == 0:
+		while not self.stopflag:
 			print 'btRead in blocking mode while waiting for android input...'
 			msg = android.read()
-			if(re.match(r'[0-7].*', msg)):
+			print "From android: ", msg
+			if msg is not None and (re.match(r'[0-7].+', msg)):
 				self.destination[msg[0]](msg[1:])
 			else:
 				print "Warning: [%s] from bluetooth is in the wrong format!!!" % (msg)
 			time.sleep (delay)
 
 	def serialRead(self, delay, arduino):
-		stop_flag = 0
-		while stop_flag == 0:
+		while not self.stopflag:
 			print "serialRead in blocking mode while waiting for arduino input..."
 			msg = arduino.read()
+			print "From arduino: ", msg
 			#append the msg to both bluetooth queue and ip queue
-			if(re.match(r'[0-7].*', msg)):
+			if msg is not None and (re.match(r'[0-7].+', msg)):
 				self.destination[msg[0]](msg[1:])
 			else:
 				print "Warning: [%s] from arduino is in the wrong format!!!" % (msg)
@@ -107,6 +108,7 @@ class ThreeThread:
 		thread.start_new_thread(self.android.startBTService, (ready1,))
 		thread.start_new_thread(self.pc.startIPService, (ready2,))
 		thread.start_new_thread(self.arduino.startSerialService, (ready3,))
+
 		while True:
 			if ready1[0] is True and ready2[0] is True and ready3[0] is True:
 				break
