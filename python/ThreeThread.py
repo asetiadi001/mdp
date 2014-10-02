@@ -9,7 +9,12 @@ from lib.arduinoWrapper import *
 
 class ThreeThread:
 	"""
-	This class purpose is to clear the checklist for RPi
+	This class will spawn 3 thread. Each 3 thread has a blocking function (read)
+	that will block until a msg is received in the corresponding channel. Once a message
+	arrive, it will first check if the first char is 0-7. If yes, it is then used to
+	determine the destination of the message. The string is then passed to each corresponding
+	function as arg msg with the first char removed. E.g: "6FORWARD" will send "FORWARD" to
+	arduino and android.
 
 	"""
 	def __init__(self):
@@ -118,7 +123,6 @@ class ThreeThread:
 		#except:
 		while True:
 			time.sleep(4.0)
-
 
 test = ThreeThread()
 test.startServices()
