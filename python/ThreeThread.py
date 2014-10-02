@@ -69,7 +69,7 @@ class ThreeThread:
 			if(re.match(r'[0-7].*', msg)):
 				self.destination[msg[0]](msg[1:])
 			else:
-				print "Warning: [%s] is in the wrong format!!!" % (msg)
+				print "Warning: [%s] from pc is in the wrong format!!!" % (msg)
 			time.sleep (delay)
 
 	def btRead (self, delay, android):
@@ -80,7 +80,7 @@ class ThreeThread:
 			if(re.match(r'[0-7].*', msg)):
 				self.destination[msg[0]](msg[1:])
 			else:
-				print "Warning: [%s] is in the wrong format!!!" % (msg)
+				print "Warning: [%s] from bluetooth is in the wrong format!!!" % (msg)
 			time.sleep (delay)
 
 	def serialRead(self, delay, arduino):
@@ -92,7 +92,7 @@ class ThreeThread:
 			if(re.match(r'[0-7].*', msg)):
 				self.destination[msg[0]](msg[1:])
 			else:
-				print "Warning: [%s] is in the wrong format!!!" % (msg)
+				print "Warning: [%s] from arduino is in the wrong format!!!" % (msg)
 			time.sleep(delay)
 
 	def startServices(self):
@@ -109,18 +109,11 @@ class ThreeThread:
 				time.sleep(3)
 
 	def mainStart(self):
-		print "entering mainStart"
-		print "waiting for start command from android..."
-		while(self.android.read()!='START'):
-			time.sleep(1)
-		print "start received...\nstarting communication:"
+		print "All connection service is up...\nstarting communication:"
 
 		thread.start_new_thread (self.ipRead,  		(0.5, self.pc))
-		#thread.start_new_thread (self.ipWrite, 		(0.5, self.pc, self.ipq))
 		thread.start_new_thread (self.btRead,		(0.5, self.android))
-		#thread.start_new_thread (self.btWrite,		(0.5, self.android, self.btq))
 		thread.start_new_thread (self.serialRead,	(0.5, self.arduino))
-		#thread.start_new_thread (self.serialWrite,	(0.5, self.arduino, self.serialq))
 
 		#except:
 		while True:
