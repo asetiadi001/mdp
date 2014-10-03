@@ -72,7 +72,10 @@ class ThreeThread:
 			print 'ipRead in blocking mode while waiting for pc input...'
 			msg = pc.read()
 			print "From pc: ", msg
-			if msg is not None and (re.match(r'[0-7].+', msg)):
+
+			if msg is None:
+				print "msg from pc is Null"
+			elif (re.match(r'[0-7].+', msg)):
 				self.destination[msg[0]](msg[1:])
 			else:
 				print "Warning: [%s] from pc is in the wrong format!!!" % (msg)
@@ -81,9 +84,12 @@ class ThreeThread:
 	def btRead (self, delay, android):
 		while not self.stopflag:
 			print 'btRead in blocking mode while waiting for android input...'
+			#BluetoothError Connection reset by peer (in btRead thread) will cause program to stop
 			msg = android.read()
 			print "From android: ", msg
-			if msg is not None and (re.match(r'[0-7].+', msg)):
+			if msg is None:
+				print "msg from android is Null"
+			elif (re.match(r'[0-7].+', msg)):
 				self.destination[msg[0]](msg[1:])
 			else:
 				print "Warning: [%s] from bluetooth is in the wrong format!!!" % (msg)
@@ -95,7 +101,9 @@ class ThreeThread:
 			msg = arduino.read()
 			print "From arduino: ", msg
 			#append the msg to both bluetooth queue and ip queue
-			if msg is not None and (re.match(r'[0-7].+', msg)):
+			if msg is None:
+				print "msg from arduino is Null"
+			elif (re.match(r'[0-7].+', msg)):
 				self.destination[msg[0]](msg[1:])
 			else:
 				print "Warning: [%s] from arduino is in the wrong format!!!" % (msg)
