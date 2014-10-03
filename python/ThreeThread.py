@@ -82,10 +82,18 @@ class ThreeThread:
 			#time.sleep (delay)
 
 	def btRead (self, delay, android):
+		temp = [False]
 		while not self.stopflag:
 			print 'btRead in blocking mode while waiting for android input...'
 			#BluetoothError Connection reset by peer (in btRead thread) will cause program to stop
-			msg = android.read()
+			try:
+				msg = android.read()
+			except BluetoothError:
+				#if disconnected by peer, restart accept method to establish bt connection, then continue to next
+				#loop
+				print "connection reset by peer"
+				self.android.startBTService(temp)
+				continue
 			print "From android: ", msg
 			if msg is None:
 				print "msg from android is Null"

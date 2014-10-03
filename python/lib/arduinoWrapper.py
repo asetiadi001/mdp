@@ -1,8 +1,9 @@
 import serial
+import glob
 
 class arduinoWrapper:
 	def __init__(self):
-		self.port = '/dev/ttyACM0'
+		self.port = glob.glob("/dev/ttyACM*")
 		self.baud = 115200
 
 
