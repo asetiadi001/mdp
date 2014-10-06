@@ -1,4 +1,5 @@
 #!
+#this file is not working yet!!!
 __author__ = 'aswin'
 import thread
 import re
@@ -18,16 +19,15 @@ class ThreeThread:
 
 	"""
 	def __init__(self):
-		self.android = androidWrapper()
-		self.pc 	 = pcWrapper()
-		self.arduino = arduinoWrapper()
-		self.stopflag= False
-
+		#self.android = androidWrapper()
+		self.pc = pcWrapper()
+		#self.arduino = arduinoWrapper()
+		self.stopflag = False
 		#self.ipq = deque([])
 		#self.btq = deque([])
 		#self.serialq = deque([])
 		self.destination ={
-			#'0':self.writeNone,
+			'0':self.writeNone,
 			'1':self.writePC,
 			'2':self.writeAndroid,
 			'3':self.writePCAn,
@@ -36,24 +36,16 @@ class ThreeThread:
 			'6':self.writeArAn,
 			'7':self.writeAll
 		}
-	#def writeNone(self, msg):
-	#	pass
+	def writeNone(self):
+		pass
 
 	def writeArduino(self, msg):
 		self.arduino.write(msg)
-		print "Send to arduino: [%s]" % (msg)
+		print "Written to arduino: %s" % (msg)
 
 	def writeAndroid(self, msg):
-		temp = [False]
-		while True:
-			try:
-				self.android.write(msg)
-				break
-			except BluetoothError:
-				print "connection reset by peer"
-				self.android.startBTService(temp)
-				continue
-		print "Send to android: [%s]" % (msg)
+		self.android.write(msg)
+		print "Written to android: %s" % (msg)
 
 	def writeArAn(self, msg):
 		self.writeArduino(msg)
@@ -61,7 +53,7 @@ class ThreeThread:
 
 	def writePC(self, msg):
 		self.pc.write(msg)
-		print "Send to PC: [%s]" % (msg)
+		print "Written to PC: %s" % (msg)
 
 	def writePCAr(self, msg):
 		self.writePC(msg)
@@ -78,35 +70,35 @@ class ThreeThread:
 
 	def ipRead (self, delay, pc):
 		while  not self.stopflag:
-			print '(system):ipRead in blocking mode while waiting for pc input...'
+			print 'ipRead in blocking mode while waiting for pc input...'
 			msg = pc.read()
+			print "From pc: ", msg
 
 			if msg is None:
 				print "msg from pc is Null"
-			elif (re.match(r'[1-7].+', msg)):
-				print "Received from pc: [%s]" % (msg)
+			elif (re.match(r'[0-7].+', msg)):
 				self.destination[msg[0]](msg[1:])
 			else:
-				print "Warning: [%s] from pc is in the wrong format!!! Destination from 1-7 only!!!" % (msg)
+				print "Warning: [%s] from pc is in the wrong format!!!" % (msg)
 			#time.sleep (delay)
 
 	def btRead (self, delay, android):
 		temp = [False]
 		while not self.stopflag:
-			print '(system):btRead in blocking mode while waiting for android input...'
+			print 'btRead in blocking mode while waiting for android input...'
 			#BluetoothError Connection reset by peer (in btRead thread) will cause program to stop
 			try:
 				msg = android.read()
 			except BluetoothError:
-				#if disconnected by peer, restart accept method to establish bt connection, then continue to next loop
+				#if disconnected by peer, restart accept method to establish bt connection, then continue to next
+				#loop
 				print "connection reset by peer"
 				self.android.startBTService(temp)
 				continue
-
+			print "From android: ", msg
 			if msg is None:
 				print "msg from android is Null"
 			elif (re.match(r'[0-7].+', msg)):
-				print "Received from android: [%s]" % (msg)
 				self.destination[msg[0]](msg[1:])
 			else:
 				print "Warning: [%s] from bluetooth is in the wrong format!!!" % (msg)
@@ -116,12 +108,11 @@ class ThreeThread:
 		while not self.stopflag:
 			print "serialRead in blocking mode while waiting for arduino input..."
 			msg = arduino.read()
-
+			print "From arduino: ", msg
 			#append the msg to both bluetooth queue and ip queue
 			if msg is None:
 				print "msg from arduino is Null"
 			elif (re.match(r'[0-7].+', msg)):
-				print "Received from arduino: [%s]" % (msg)
 				self.destination[msg[0]](msg[1:])
 			else:
 				print "Warning: [%s] from arduino is in the wrong format!!!" % (msg)
@@ -139,18 +130,35 @@ class ThreeThread:
 			if ready1[0] is True and ready2[0] is True and ready3[0] is True:
 				break
 			else:
-				time.sleep(1)
+				time.sleep(3)
 
 	def mainStart(self):
 		print "All connection service is up...\nstarting communication:"
-		thread.start_new_thread (self.ipRead,  		(0.5, self.pc))
-		thread.start_new_thread (self.btRead,		(0.5, self.android))
-		thread.start_new_thread (self.serialRead,	(0.5, self.arduino))
+		temp = [False]
+		self.pc.startIPService(temp)
+		while  True:
+			print 'ipRead in blocking mode while waiting for pc input...'
+			msg = self.pc.read()
+			print "From pc: ", msg
+
+			if msg is None:
+				print "msg from pc is Null"
+			elif (re.match(r'[0-7].+', msg)):
+				#self.destination[msg[0]](msg[1:])
+				print "Received [%s] from pc, send to arduino [%s]" % (msg, msg[1:])
+				self.pc.write(msg[1:])
+				print "Received from arduino [%s], send to pc [%s]" % ('1'+msg[1:], msg[1:])
+			else:
+				print "Warning: [%s] from pc is in the wrong format!!!" % (msg)
+
+		#thread.start_new_thread (self.ipRead,  		(0.5, self.pc))
+		#thread.start_new_thread (self.btRead,		(0.5, self.android))
+		#thread.start_new_thread (self.serialRead,	(0.5, self.arduino))
 
 		#except:
 		while True:
 			time.sleep(4.0)
 
 test = ThreeThread()
-test.startServices()
+#test.startServices()
 test.mainStart()

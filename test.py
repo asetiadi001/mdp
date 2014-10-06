@@ -49,13 +49,25 @@ class MultiThread(threading.Thread):
 	def run(self):
 		print "Starting " + self.name
 
-def printTime(threadName, delay, counter):
-	while counter:
-		if exitFlag:
-			thread.exit()
-		print ""
+class MyThread(threading.Thread):
+	def __init__(self, tname, count, jump):
+		threading.Thread.__init__(self)
+		self.tname = tname
+		self.count = count
+		self.jump = jump
 
-if re.match(r'[0-7].*', "-1aswin"):
-	print True
-else:
-	print False
+	def run(self):
+		print "Starting %s" % (self.tname)
+		self.increasingNum(self.name, self.count, self.jump)
+		print "Done looping for ", self.name
+
+	def increasingNum(self, name, count, jump):
+		global exitFlag
+		for num in range(0, count, jump):
+			if exitFlag:
+				thread.exit()
+			if num==3:
+				exitFlag = 1
+			print num
+			time.sleep(1)
+

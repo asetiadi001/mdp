@@ -3,8 +3,8 @@ import glob
 
 class arduinoWrapper:
 	def __init__(self):
-		self.port = glob.glob("/dev/ttyACM*")
-		self.baud = 115200
+		self.port = glob.glob("/dev/ttyACM*")[0]
+		self.baud = 9600
 
 
 	def startSerialService(self, ready3):
