@@ -44,14 +44,14 @@ class ThreeThread:
 		print "Send to arduino: [%s]" % (msg)
 
 	def writeAndroid(self, msg):
-		temp = [False]
+		#temp = [False]
 		while True:
 			try:
 				self.android.write(msg)
 				break
 			except BluetoothError:
 				print "connection reset by peer"
-				self.android.startBTService(temp)
+				self.android.startBTService()
 				continue
 		print "Send to android: [%s]" % (msg)
 
@@ -91,7 +91,6 @@ class ThreeThread:
 			#time.sleep (delay)
 
 	def btRead (self, delay, android):
-		temp = [False]
 		while not self.stopflag:
 			print '(system):btRead in blocking mode while waiting for android input...'
 			#BluetoothError Connection reset by peer (in btRead thread) will cause program to stop
@@ -100,7 +99,7 @@ class ThreeThread:
 			except BluetoothError:
 				#if disconnected by peer, restart accept method to establish bt connection, then continue to next loop
 				print "connection reset by peer"
-				self.android.startBTService(temp)
+				self.android.startBTService()
 				continue
 
 			if msg is None:

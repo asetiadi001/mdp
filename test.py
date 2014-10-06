@@ -71,3 +71,31 @@ class MyThread(threading.Thread):
 			print num
 			time.sleep(1)
 
+class StarArgs():
+	def __init__(self):
+		self.ready = [False]
+
+	def start(self, delay):
+		print self.ready[0]
+		while not self.ready[0]:
+			time.sleep(1)
+			print "hello happy world"
+			#self.ready[0] = True
+		print "break from loop"
+		print self.ready[0]
+
+	def getReady(self):
+		return self.ready
+
+def modifyReady(*args):
+	for arg in args:
+		time.sleep(3)
+		arg[0] = True
+
+aswin =StarArgs()
+
+thread.start_new_thread(aswin.start, (1, ))
+thread.start_new_thread(modifyReady, (aswin.getReady(), ))
+
+while True:
+	time.sleep(3)
