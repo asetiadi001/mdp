@@ -12,7 +12,7 @@ const int MotorLeftPWN = 10;
 const int MotorRightPWN = 9;
 
 int URPWM = 6; // PWM Output 0－25000US，Every 50US represent 1cm
-int URTRIG = 2; // PWM trigger pin
+int URTRIG = 12; // PWM trigger pin
  
 unsigned int Distanceultra = 5;
 //uint8_t EnPwmCmd[4]={0x44,0x02,0xbb,0x01};
@@ -23,7 +23,7 @@ double Setpoint, analogLeftMotorInput, analogRightMotorInput;
 static double outputleftMotorpower, outputrightMotorpower;
 
 //Define the aggressive and conservative Tuning Parameters
-double aggKp=4.5, aggKi=0.2, aggKd=1;
+double aggKp=4.7, aggKi=0.2, aggKd=1; //4.5
 double consKp=1, consKi=0.05, consKd=0.25; //1,0.05,0.25
 
 //Specify pid controls for left and right motors
@@ -32,12 +32,16 @@ PID rightMotorPID(&analogRightMotorInput, &outputrightMotorpower, &Setpoint, con
 
 
 //Serial Read String Variable
-char inData[20]; // Allocate some space for the string
+char inData[1000]; // Allocate some space for the string
 char inChar=-1; // Where to store the character read
 byte index = 0; // Index into array; where to store the character
 
 
 char* getRPiMsg() {
+  memset(inData, 0, sizeof(inData));  
+  Serial.readBytes(inData, 1000);
+  return inData;
+  
   char* streamBuffer = (char*) malloc (20);
   char charBuffer;
   int index=0;
@@ -66,71 +70,100 @@ void setup() {
    leftMotorPID.SetSampleTime(10);
    rightMotorPID.SetSampleTime(10);   
    
-//   pinMode(URTRIG,OUTPUT);                     // A low pull on pin COMP/TRIG
-//   digitalWrite(URTRIG,HIGH);                  // Set to HIGH
+   pinMode(URTRIG,OUTPUT);                     // A low pull on pin COMP/TRIG
+   digitalWrite(URTRIG,HIGH);                  // Set to HIGH
 //  
-//   pinMode(URPWM, INPUT); 
+   pinMode(URPWM, INPUT); 
 }
 
+void doScan() {
+    Serial.print("1");
+    Serial.print(getFront());
+    Serial.print("_");
+    Serial.print(getSide(A2));
+    Serial.print("_");
+    Serial.println(getSide(A5));  
+}
+
+void make_move(char c) {
+  switch (c) {
+    case 'F': cruise_ten();
+              break;
+    case 'R': moveRight(90, 225);
+              break;
+    case 'L': moveLeft(90, 225);
+              break;
+    case 'B': md.setBrakes(400, 400);
+              break;  
+    case 'S': doScan();
+              break;
+    case 'C': straighten();
+              break;  
+    default : md.setSpeeds(0,0);  
+  }
+  if (c != 'S') {
+    Serial.print('1');
+    Serial.println(c);
+  }  
+}
 void loop() {
-  
   resetEncoderCount();
-  //Serial.println("Loop started");
   char* temp= getRPiMsg();
-  char* temp2;
-  //Serial.print(strlen(temp));
-  //
-  //delay(500);
   if (strlen(temp) <= 0) {
-    free(temp);
     return;
   }
-  Serial.flush();
-
-    if(strcmp(temp, "F") == 0){
-      //Move 10cm
-      cruise_ten();  
-    } else if(strcmp(temp, "R") == 0){
-      //Rotate right 90 degrees at 280 speed
-      moveRight(90, 280);
-    } else if(strcmp(temp, "L") == 0){
-      //Rotate left 90 degrees at 280 speed
-      moveLeft(90, 280);
-    } else if(strcmp(temp, "B") == 0){
-      //E.Brake
-      md.setBrakes(400, 400);
-    } else if(strcmp(temp, "S") == 0){
-      Serial.print("1");
-      Serial.print(getFront());
-      Serial.print("_");
-      Serial.print(getSide(A2));
-      Serial.print("_");
-      Serial.println(getSide(A5));
-    } else if(strcmp(temp, "Q") == 0){
-      //E.Brake
-      Serial.print(IRMedian(A3,5));
-      Serial.print(",");
-      Serial.println(IRMedian(A4,5));
-    } else if(strcmp(temp, "C") == 0){
-      //E.Brake
-      straighten();
-    } else{
-      md.setSpeeds(0,0);
-    }
-    if(strcmp(temp, "S")) {
-      Serial.print("1");
-      Serial.println(temp);
-    }
   
-  free(temp);
-  delay(500);
+  if (strlen(temp) == 1) {
+    make_move(temp[0]);
+  } else {
+    int n = strlen(temp);
+    for (int i = 0; i < n; i++) {
+      make_move(temp[i]);
+    }
+  }
+//    if(strcmp(temp, "F") == 0){
+//      //Move 10cm
+//      cruise_ten();  
+//    } else if(strcmp(temp, "R") == 0){
+//      //Rotate right 90 degrees at 280 speed
+//      moveRight(90, 280);
+//    } else if(strcmp(temp, "L") == 0){
+//      //Rotate left 90 degrees at 280 speed
+//      moveLeft(90, 280);
+//    } else if(strcmp(temp, "B") == 0){
+//      //E.Brake
+//      md.setBrakes(400, 400);
+//    } else if(strcmp(temp, "S") == 0){
+//      Serial.print("1");
+//      Serial.print(getFront());
+//      Serial.print("_");
+//      Serial.print(getSide(A2));
+//      Serial.print("_");
+//      Serial.println(getSide(A5));
+//    } else if(strcmp(temp, "Q") == 0){
+//      //E.Brake
+//      Serial.print(IRMedian(A3,5));
+//      Serial.print(",");
+//      Serial.println(IRMedian(A4,5));
+//    } else if(strcmp(temp, "C") == 0){
+//      //E.Brake
+//      straighten();
+//    } else{
+//      md.setSpeeds(0,0);
+//    }
+//    if(strcmp(temp, "S")) {
+//      Serial.print("1");
+//      Serial.println(temp);
+//    }
+//  
+//  delay(100);
 }
 
 
 //----------Public functions-----------//
 void cruise_ten() {
   // Number of ticks for 10cm
-  float noOfTicksForDist = 450; //430
+  float noOfTicksForDist = 480; //450//430
   
   float leftTicksForAngleOrDist = 0;
   float rightTicksForAngleOrDist = 0;
@@ -151,23 +184,27 @@ void cruise_ten() {
     rightMotorPID.SetOutputLimits(250,275);
 
     forward();
-    md.setBrakes(300,300);
-    retu
+    //md.setBrakes(300,300);
+    //return;
 
     //----cruise------
-    if (getIR(A3)>12 && getIR(A4)>12) {
-      leftMotorPID.SetOutputLimits(250,270);
-      rightMotorPID.SetOutputLimits(250,275);
-      
-      forward();
-    }
-    else {
-      md.setBrakes(300,300);
-      delay(200);
-      //straighten();
-      break;
-    }
+//    if (getIR(A3)>12 && getIR(A4)>12) {
+//      leftMotorPID.SetOutputLimits(250,270);
+//      rightMotorPID.SetOutputLimits(250,275);
+//      
+//      forward();
+//    }
+//    else {
+//      md.setBrakes(300,300);
+//      delay(200);
+//      //straighten();
+//      break;
+//    }
   }
+  md.setBrakes(250,250);  //initial 300
+ // if (has_obstacle_front_left() && has_obstacle_front_right()) {
+ //   straighten();
+//  }
 }
 
 void moveRight(int degree,int motorPower) {
@@ -204,12 +241,22 @@ void moveLeft(int degree,int motorPower) {
   md.setBrakes(m1Power,m2Power);
 }
 
-int detect_side(float distance) {
+int has_obstacle_front_left() {
+  float distance = getIR(A3);
+//  Serial.println(distance);  
   return distance <= 10;
 }
 
-int detect_front(float distance) {
-  return distance <= 7;
+int has_obstacle_front_right() {
+  float distance = getIR(A4);
+  //Serial.println(distance);  
+  return distance <= 10;
+}
+
+int has_obstacle_front_center() {
+  float distance = getUltra();   
+  //Serial.println(distance);    
+  return distance <= 8;
 }
 
 String getFront() {
@@ -217,43 +264,13 @@ String getFront() {
    float err = 0.5;
    String results = "";
    int grid[3];
-   /*
-     [0 1 2]
-    */
-   float ultrasonic = 10;//getUltra();   
-   float leftFront = getIR(A3);
-   float rightFront = getIR(A4);
-   //Serial.print("Left distance = ");
-   //Serial.println(leftFront);
-   
-   //Serial.print("Center distance = ");
-   //Serial.println(ultrasonic);
-   
-   //Serial.print("Right distance = ");
-   //Serial.println(rightFront);
-   
-   //delay(200);
-   /*
-   moveLeft(10,250);
-   delay(500);
-   float leftFrontL = getIR(A3);
-   float rightFrontL = getIR(A4);
-   moveRight(25,250);
-   delay(500);
-   float leftFrontR = getIR(A3);
-   float rightFrontR = getIR(A4);
-   moveLeft(10,250);
-   delay(200);
-   */
    for (int i=0;i<3;i++){
      grid[i] = 0;
    }
-   
-   //--Check near obstacles--//
-   //Sense near obstacles in the left
-   grid[0] = detect_side(leftFront);
-   grid[2] = detect_side(rightFront);
-   grid[1] = detect_front(ultrasonic);  
+
+   grid[0] = has_obstacle_front_left();
+   grid[2] = has_obstacle_front_right();
+   grid[1] = has_obstacle_front_center();  
    for (int i=0;i<3;i++){
      results.concat(grid[i]);
    }
@@ -314,12 +331,13 @@ void resetEncoderCount() {
 
 float getIR(int irPin) {
   float distance = 0.0;
-  int numSample = 25;
+  int numSample = 5;
   for(int i = 1; i <= numSample; i++)   {
     distance += (12343.85 * pow(analogRead(irPin),-1.15));
+    delay(5);
   }
   distance = distance / (float)numSample;
-  
+//  Serial.println(distance);
 //  Serial.print(irPin);
 //  Serial.print(" Distance :");
 //  Serial.print(distance);
@@ -378,7 +396,7 @@ return Distanceultra2;
 void straighten() {
   float difference = IRMedian(A3,3)-IRMedian(A4,3);
   float diff_total = 0;
-  float diff_limit = 0.5;
+  float diff_limit = 0.2;
   
   for(int i=0;i<21;i++){
      if (i % 3 == 0) {
@@ -410,7 +428,7 @@ void sprint() {
   }
   else {
     md.setBrakes(400,400);
-    delay(500);
+    delay(100);
     straighten();
   }
 }
