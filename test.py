@@ -92,8 +92,11 @@ def modifyReady(*args):
 		time.sleep(3)
 		arg[0] = True
 
+temp = 'T     \n\r'
+mObj= re.match(r'\w+', temp)
+print "[%s]" % (mObj.group())
+print "test", 2
 aswin =StarArgs()
-
 thread.start_new_thread(aswin.start, (1, ))
 thread.start_new_thread(modifyReady, (aswin.getReady(), ))
 

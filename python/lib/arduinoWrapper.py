@@ -1,5 +1,6 @@
 import serial
 import glob
+import serial.serialutil
 
 class arduinoWrapper:
 	def __init__(self):
@@ -23,6 +24,11 @@ class arduinoWrapper:
 			#print "Received: %s Send to Arduino: %s" %(msg, self.translation[msg])
 
 	def read(self):
-		msg = self.serSock.readline()
+		while True:
+			try:
+				msg = self.serSock.readline()
+				return msg
+			except serial.serialutil.SerialException:
+				#inWaiting return the number of chars in the receive buffer.
+				print "number of ", self.serSock.inWaiting()
 		#print "Read from Arduino: %s" %(msg)
-		return msg

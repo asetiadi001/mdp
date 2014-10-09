@@ -23,6 +23,8 @@ class ThreeThread:
 		self.arduino = arduinoWrapper()
 		self.stopflag= False
 
+		self.msgToPC = ''
+
 		#self.ipq = deque([])
 		#self.btq = deque([])
 		#self.serialq = deque([])
@@ -41,7 +43,7 @@ class ThreeThread:
 
 	def writeArduino(self, msg):
 		self.arduino.write(msg)
-		print "Send to arduino: [%s]" % (msg)
+		print "Send to arduino: [%s]\n" % (msg)
 
 	def writeAndroid(self, msg):
 		#temp = [False]
@@ -52,16 +54,17 @@ class ThreeThread:
 			except BluetoothError:
 				print "connection reset by peer"
 				self.android.startBTService()
-				continue
-		print "Send to android: [%s]" % (msg)
+				#continue
+		print "Send to android: [%s]\n" % (msg)
 
 	def writeArAn(self, msg):
 		self.writeArduino(msg)
 		self.writeAndroid(msg)
 
 	def writePC(self, msg):
+		self.msgToPC=msg
 		self.pc.write(msg)
-		print "Send to PC: [%s]" % (msg)
+		print "Send to PC: [%s]\n" % (msg)
 
 	def writePCAr(self, msg):
 		self.writePC(msg)
@@ -78,11 +81,14 @@ class ThreeThread:
 
 	def ipRead (self, delay, pc):
 		while  not self.stopflag:
-			print '(system):ipRead in blocking mode while waiting for pc input...'
+			#print '(system):ipRead in blocking mode while waiting for pc input...'
+			#assume pc string does not get chopped
 			msg = pc.read()
-
 			if msg is None:
-				print "msg from pc is Null"
+				print "msg from pc is None"
+
+			elif msg == 'T':
+				self.pc.write(self.msgToPC)
 			elif (re.match(r'[1-7].+', msg)):
 				print "Received from pc: [%s]" % (msg)
 				self.destination[msg[0]](msg[1:])
@@ -92,7 +98,7 @@ class ThreeThread:
 
 	def btRead (self, delay, android):
 		while not self.stopflag:
-			print '(system):btRead in blocking mode while waiting for android input...'
+			#print '(system):btRead in blocking mode while waiting for android input...'
 			#BluetoothError Connection reset by peer (in btRead thread) will cause program to stop
 			try:
 				msg = android.read()
@@ -113,15 +119,16 @@ class ThreeThread:
 
 	def serialRead(self, delay, arduino):
 		while not self.stopflag:
-			print "serialRead in blocking mode while waiting for arduino input..."
+			#print "(system):serialRead in blocking mode while waiting for arduino input..."
 			msg = arduino.read()
-
 			#append the msg to both bluetooth queue and ip queue
 			if msg is None:
-				print "msg from arduino is Null"
+				print "msg from arduino is None"
 			elif (re.match(r'[0-7].+', msg)):
 				print "Received from arduino: [%s]" % (msg)
-				self.destination[msg[0]](msg[1:])
+				matchObj = re.match(r'\w+', msg[1:])
+				temp = matchObj.group()
+				self.destination[msg[0]](temp)
 			else:
 				print "Warning: [%s] from arduino is in the wrong format!!!" % (msg)
 			#time.sleep(delay)
