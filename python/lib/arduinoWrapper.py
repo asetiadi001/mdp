@@ -35,5 +35,5 @@ class arduinoWrapper:
 				return msg
 			except serial.serialutil.SerialException:
 				#inWaiting return the number of chars in the receive buffer.
-				print "number of ", self.serSock.inWaiting()
+				print "number of data in serial buffer: ", self.serSock.inWaiting()
 		#print "Read from Arduino: %s" %(msg)

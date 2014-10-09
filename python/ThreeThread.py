@@ -86,7 +86,7 @@ class ThreeThread:
 			msg = pc.read()
 			if msg is None:
 				print "msg from pc is None"
-			elif msg is 'raise':
+			elif msg == 'raise':
 				self.arduino.setArg()
 			elif msg == 'T':
 				self.pc.write(self.msgToPC)
