@@ -18,9 +18,9 @@ class ThreeThread:
 
 	"""
 	def __init__(self):
-		self.android = androidWrapper()
-		self.pc 	 = pcWrapper()
-		self.arduino = arduinoWrapper()
+		self.android = AndroidWrapper()
+		self.pc 	 = PCWrapper()
+		self.arduino = ArduinoWrapper()
 		self.stopflag= False
 
 		self.msgToPC = ''
