@@ -1,7 +1,7 @@
 import socket
 import time
 
-class pcWrapper:
+class PCWrapper:
 	def __init__(self):
 		self.tcp_ip = "192.168.18.1"
 		self.port = 5143

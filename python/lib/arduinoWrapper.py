@@ -2,7 +2,7 @@ import serial
 import glob
 import serial.serialutil
 
-class arduinoWrapper:
+class ArduinoWrapper:
 	def __init__(self):
 		self.port = glob.glob("/dev/ttyACM*")[0]
 		self.baud = 9600
@@ -29,5 +29,5 @@ class arduinoWrapper:
 
 		except serial.serialutil.SerialException:
 			#inWaiting return the number of chars in the receive buffer.
-			print " SerialException (readiness) error. # of data in serial buffer: ", self.serSock.inWaiting()
+			print " SerialException (readiness) error. num of data in serial buffer: ", self.serSock.inWaiting()
 		#print "Read from Arduino: %s" %(msg)

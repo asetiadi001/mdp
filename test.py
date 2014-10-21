@@ -92,6 +92,27 @@ def modifyReady(*args):
 		time.sleep(3)
 		arg[0] = True
 
+def getLargestSubsequent(arr):
+	seqStart, seqEnd = 0,0
+	maxSum = 0
+	thisSum = 0
+	i = 0
+	for j in range(0, len(arr)):
+		thisSum = thisSum + arr[j]
+		if thisSum > maxSum:
+
+			maxSum = thisSum
+			print maxSum
+			seqStart=i
+			seqEnd=j
+		elif thisSum <0:
+			i=j+1
+			thisSum=0
+	return [maxSum, seqStart, seqEnd]
+
+print getLargestSubsequent([10,-11,12])
+
+"""
 temp = 'T     \n\r'
 mObj= re.match(r'\w+', temp)
 print "[%s]" % (mObj.group())
@@ -100,5 +121,9 @@ aswin =StarArgs()
 thread.start_new_thread(aswin.start, (1, ))
 thread.start_new_thread(modifyReady, (aswin.getReady(), ))
 
+
+
+
 while True:
 	time.sleep(3)
+"""
